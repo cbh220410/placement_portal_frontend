@@ -1,0 +1,285 @@
+/* =====================================
+   PAGE BASE STYLING
+   ===================================== */
+  .pageContainer {
+  --portal-role: employer;
+  --accent-blue: #15803d;
+  --accent-purple: #22c55e;
+  --accent-pink: #65a30d;
+  --gradient-text: linear-gradient(135deg, #14532d, #16a34a);
+  --border-primary: rgba(21, 128, 61, 0.24);
+  --card-shadow: 0 8px 24px rgba(21, 128, 61, 0.1);
+  --hover-shadow: 0 14px 30px rgba(21, 128, 61, 0.18);
+  --focus-ring: rgba(21, 128, 61, 0.2);
+  --button-shadow: rgba(21, 128, 61, 0.2);
+  --button-shadow-hover: rgba(21, 128, 61, 0.3);
+  --table-header-bg: rgba(21, 128, 61, 0.12);
+  --table-row-alt: rgba(21, 128, 61, 0.04);
+  --table-row-hover: rgba(21, 128, 61, 0.1);
+  --chart-grid: rgba(21, 128, 61, 0.16);
+  min-height: 100vh;
+  background: var(--page-bg);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-primary);
+  position: relative;
+  overflow-x: hidden;
+  padding-bottom: 40px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.pageContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+}
+
+/* =====================================
+   CONTENT CONTAINER
+   ===================================== */
+.contentContainer {
+  max-width: 1000px;
+  margin: auto;
+  padding: 60px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+/* =====================================
+   MAIN HEADING
+   ===================================== */
+.mainHeading {
+  font-size: 42px;
+  font-weight: 800;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-align: left;
+  border-left: 6px solid var(--accent-blue);
+  padding-left: 15px;
+  margin-bottom: 40px;
+  letter-spacing: -0.5px;
+}
+
+/* =====================================
+   PROFILE CARD
+   ===================================== */
+.profileCard {
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid var(--border-primary);
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.profileCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.profileCard:hover::before {
+  left: 100%;
+}
+
+.name {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* =====================================
+   INFO TEXT
+   ===================================== */
+.infoText {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin: 10px 0;
+  line-height: 1.6;
+}
+
+.resumeLink {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.resumeLink:hover {
+  text-decoration: underline;
+}
+
+/* =====================================
+   APPLICATION CARD
+   ===================================== */
+.applicationCard,
+.applicationHistoryCard {
+  background: var(--card-bg);
+  box-shadow: var(--card-shadow);
+  border-radius: 16px;
+  padding: 32px;
+  border: 1px solid var(--border-primary);
+  margin-bottom: 40px;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+.applicationCard::before,
+.applicationHistoryCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.08),
+    transparent
+  );
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.applicationCard:hover::before,
+.applicationHistoryCard:hover::before {
+  left: 100%;
+}
+
+/* =====================================
+   CARD HEADINGS
+   ===================================== */
+.cardHeading {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* =====================================
+   NO APPLICATIONS
+   ===================================== */
+.noApplications {
+  color: var(--text-muted);
+  font-size: 1rem;
+  padding: 12px 0;
+}
+
+/* =====================================
+   APPLICATION LIST
+   ===================================== */
+.appList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.appItem {
+  padding: 16px;
+  border-bottom: 1px solid var(--border-primary);
+  position: relative;
+  transition: 0.3s;
+}
+
+.appItem:last-child {
+  border-bottom: none;
+}
+
+.appItem:hover {
+  background: rgba(96, 165, 250, 0.05);
+  border-left: 4px solid var(--accent-blue);
+  padding-left: 20px;
+}
+
+/* =====================================
+   NOT FOUND HEADING
+   ===================================== */
+.notFoundHeading {
+  text-align: center;
+  margin-top: 120px;
+  font-size: 32px;
+  color: var(--text-muted);
+}
+
+/* =====================================
+   MEDIA QUERIES
+   ===================================== */
+@media (max-width: 768px) {
+  .contentContainer {
+    padding: 40px 15px;
+  }
+
+  .mainHeading {
+    font-size: 32px;
+  }
+
+  .profileCard,
+  .applicationCard,
+  .applicationHistoryCard {
+    padding: 24px;
+  }
+}
+
+
+
+/* portal-landing-bg */
+.pageContainer {
+  background: var(--page-bg);
+  position: relative;
+  overflow-x: hidden;
+  isolation: isolate;
+}
+
+.pageContainer::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 14% 18%, var(--accent-blue) 0%, transparent 42%),
+    radial-gradient(circle at 88% 12%, var(--accent-purple) 0%, transparent 40%),
+    radial-gradient(circle at 62% 88%, var(--accent-pink, var(--accent-purple)) 0%, transparent 44%);
+  opacity: 0.16;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.pageContainer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border-primary) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-primary) 1px, transparent 1px);
+  background-size: 36px 36px, 36px 36px;
+  background-position: center;
+  opacity: 0.35;
+  z-index: -1;
+  pointer-events: none;
+}

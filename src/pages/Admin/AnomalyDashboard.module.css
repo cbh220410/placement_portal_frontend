@@ -1,0 +1,282 @@
+/* =====================================
+   PAGE BASE STYLING
+   ===================================== */
+  .pageContainer {
+  --portal-role: admin;
+  --accent-blue: #7c3aed;
+  --accent-purple: #a855f7;
+  --accent-pink: #d946ef;
+  --gradient-text: linear-gradient(135deg, #5b21b6, #9333ea);
+  --border-primary: rgba(124, 58, 237, 0.25);
+  --card-shadow: 0 8px 24px rgba(124, 58, 237, 0.1);
+  --hover-shadow: 0 14px 30px rgba(124, 58, 237, 0.18);
+  --focus-ring: rgba(124, 58, 237, 0.2);
+  --button-shadow: rgba(124, 58, 237, 0.22);
+  --button-shadow-hover: rgba(124, 58, 237, 0.32);
+  min-height: 100vh;
+  background: var(--page-bg);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--text-primary);
+  position: relative;
+  overflow-x: hidden;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.pageContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+}
+
+/* =====================================
+   CONTENT WRAPPER
+   ===================================== */
+.contentContainer {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+  z-index: 1;
+}
+
+/* =====================================
+   HEADING STYLING
+   ===================================== */
+.mainHeading {
+  font-size: 42px;
+  font-weight: 800;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 20px 0 30px;
+  border-left: 6px solid var(--accent-blue);
+  padding-left: 15px;
+  letter-spacing: -0.5px;
+}
+
+/* =====================================
+   ANOMALY CARD GRID
+   ===================================== */
+.anomalyGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 25px;
+  margin-top: 40px;
+}
+
+/* =====================================
+   INDIVIDUAL CARD STYLING
+   ===================================== */
+.anomalyCard {
+  padding: 30px;
+  background: var(--card-bg);
+  border-left: 5px solid var(--accent-blue);
+  border-radius: 16px;
+  border: 1px solid var(--border-primary);
+  box-shadow: var(--card-shadow);
+  backdrop-filter: blur(10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.anomalyCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.5s;
+  pointer-events: none;
+}
+
+.anomalyCard:hover::before {
+  left: 100%;
+}
+
+.anomalyCard:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--hover-shadow);
+}
+
+/* Severity-based border colors */
+.anomalyCard:has(.anomalySeverity[style*="rgb(220, 53, 69)"]),
+.anomalyCard:has(.anomalySeverity[style*="rgb(239, 68, 68)"]),
+.anomalyCard:has(.anomalySeverity[style*="#dc3545"]) {
+  border-left-color: #ef4444;
+}
+
+.anomalyCard:has(.anomalySeverity[style*="rgb(255, 193, 7)"]),
+.anomalyCard:has(.anomalySeverity[style*="#ffc107"]) {
+  border-left-color: #eab308;
+}
+
+.anomalyCard:has(.anomalySeverity[style*="rgb(23, 162, 184)"]),
+.anomalyCard:has(.anomalySeverity[style*="#17a2b8"]) {
+  border-left-color: #06b6d4;
+}
+
+/* =====================================
+   CARD HEADER
+   ===================================== */
+.anomalyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  gap: 12px;
+}
+
+.anomalyType {
+  font-size: 1.2rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: capitalize;
+  margin: 0;
+}
+
+/* =====================================
+   SEVERITY BADGE
+   ===================================== */
+.anomalySeverity {
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 12px;
+  border-radius: 6px;
+  display: inline-block;
+  white-space: nowrap;
+  background: rgba(168, 85, 247, 0.15);
+  color: var(--text-secondary);
+}
+
+/* =====================================
+   CARD BODY DETAILS
+   ===================================== */
+.anomalyUser {
+  color: var(--text-secondary);
+  margin: 12px 0;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.anomalyDetails {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 8px 0 0 0;
+}
+
+/* =====================================
+   RESPONSIVENESS
+   ===================================== */
+@media (max-width: 768px) {
+  .contentContainer {
+    padding: 40px 15px;
+  }
+
+  .mainHeading {
+    font-size: 32px;
+  }
+
+  .anomalyGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .anomalyCard {
+    padding: 24px;
+  }
+
+  .anomalyHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .anomalySeverity {
+    align-self: flex-start;
+  }
+}
+
+/* ===== CSS VARIABLES FOR THEMING ===== */
+
+/* DARK THEME (DEFAULT) */
+:root[data-theme='dark'] {
+  --page-bg: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  --card-bg: linear-gradient(135deg, rgba(30, 41, 59, 0.8), rgba(15, 23, 42, 0.6));
+  --text-primary: #e2e8f0;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --border-primary: rgba(168, 85, 247, 0.3);
+  --gradient-text: linear-gradient(135deg, #a855f7, #c084fc, #ec4899);
+  --card-shadow: 0 0 30px rgba(168, 85, 247, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  --hover-shadow: 0 15px 40px rgba(168, 85, 247, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  --accent-blue: #a855f7;
+  --accent-purple: #c084fc;
+  --accent-pink: #ec4899;
+}
+
+/* LIGHT THEME */
+:root[data-theme='light'] {
+  --page-bg: linear-gradient(135deg, #f8f9fa 0%, #f0f4f8 50%, #f8f9fa 100%);
+  --card-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(248, 249, 250, 0.9));
+  --text-primary: #1f2937;
+  --text-secondary: #374151;
+  --text-muted: #6b7280;
+  --border-primary: rgba(124, 58, 237, 0.2);
+  --gradient-text: linear-gradient(135deg, #7c3aed, #9333ea, #ec4899);
+  --card-shadow: 0 0 20px rgba(124, 58, 237, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  --hover-shadow: 0 12px 30px rgba(124, 58, 237, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  --accent-blue: #7c3aed;
+  --accent-purple: #9333ea;
+  --accent-pink: #ec4899;
+}
+
+
+
+/* portal-landing-bg */
+.pageContainer {
+  background: var(--page-bg);
+  position: relative;
+  overflow-x: hidden;
+  isolation: isolate;
+}
+
+.pageContainer::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(circle at 14% 18%, var(--accent-blue) 0%, transparent 42%),
+    radial-gradient(circle at 88% 12%, var(--accent-purple) 0%, transparent 40%),
+    radial-gradient(circle at 62% 88%, var(--accent-pink, var(--accent-purple)) 0%, transparent 44%);
+  opacity: 0.16;
+  z-index: -2;
+  pointer-events: none;
+}
+
+.pageContainer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border-primary) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-primary) 1px, transparent 1px);
+  background-size: 36px 36px, 36px 36px;
+  background-position: center;
+  opacity: 0.35;
+  z-index: -1;
+  pointer-events: none;
+}
